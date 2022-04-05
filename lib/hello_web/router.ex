@@ -12,6 +12,8 @@ defmodule HelloWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :fetch_session
+    plug :fetch_live_flash
   end
 
   scope "/", HelloWeb do
@@ -20,14 +22,15 @@ defmodule HelloWeb.Router do
     get "/", PageController, :index
     get "/hello", HelloController, :index
     get "/hello/:messenger", HelloController, :show
-
     resources "/products", ProductController
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", HelloWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", HelloWeb do
+    pipe_through :api
+
+    resources "/posts", PostController, except: [:new, :edit]
+  end
 
   # Enables LiveDashboard only for development
   #
