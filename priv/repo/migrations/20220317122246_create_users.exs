@@ -4,9 +4,11 @@ defmodule Hello.Repo.Migrations.CreateUsers do
   def change do
     create table(:users) do
       add :name, :string
+      add :username, :string
       add :email, :string
+      add :phone, :string
       add :bio, :string
-      add :number_of_pets, :integer
+      add :profile_pic, :string
 
       timestamps()
     end

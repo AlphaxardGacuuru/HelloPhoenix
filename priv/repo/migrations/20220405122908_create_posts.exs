@@ -5,6 +5,7 @@ defmodule Hello.Repo.Migrations.CreatePosts do
     create table(:posts) do
       add :username, :string
       add :text, :string
+      add :media, :string
 
       timestamps()
     end

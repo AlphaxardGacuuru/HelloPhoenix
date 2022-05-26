@@ -22,14 +22,15 @@ defmodule HelloWeb.Router do
     get "/", PageController, :index
     get "/hello", HelloController, :index
     get "/hello/:messenger", HelloController, :show
-    resources "/products", ProductController
   end
 
   # Other scopes may use custom stacks.
   scope "/api", HelloWeb do
     pipe_through :api
 
+    resources "/users", UserController, except: [:new, :edit]
     resources "/posts", PostController, except: [:new, :edit]
+    resources "/post-likes", PostLikeController, except: [:new, :edit]
   end
 
   # Enables LiveDashboard only for development

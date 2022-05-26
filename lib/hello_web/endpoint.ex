@@ -46,13 +46,16 @@ defmodule HelloWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
+
   # Added Corsica
   plug(
     Corsica,
-    origins: "http://localhost:8080",
+    origins: "*",
+    # origins: "http://localhost:8080",
     log: [rejected: :error, invalid: :warn, accepted: :debug],
     allow_headers: ["content-type"],
     allow_credentials: true
   )
+
   plug HelloWeb.Router
 end

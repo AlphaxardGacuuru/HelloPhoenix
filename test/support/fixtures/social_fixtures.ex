@@ -18,4 +18,19 @@ defmodule Hello.SocialFixtures do
 
     post
   end
+
+  @doc """
+  Generate a post_like.
+  """
+  def post_like_fixture(attrs \\ %{}) do
+    {:ok, post_like} =
+      attrs
+      |> Enum.into(%{
+        post_id: 42,
+        username: "some username"
+      })
+      |> Hello.Social.create_post_like()
+
+    post_like
+  end
 end
